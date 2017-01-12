@@ -3,7 +3,7 @@
 <#@ include file="JavaMySQL.ttinclude" #>
 <#
     var tables = LoadTables();
-	 
+	
 	//use lower table name only
 	string[] IncludeTables = new string[] {};
 
@@ -14,6 +14,7 @@
 package <#=Namespace#>;
 
 import io.ebean.Model;
+import io.ebean.annotation.*;
 
 import javax.persistence.*;
 
@@ -21,17 +22,12 @@ import javax.persistence.*;
  * A class which represents the <#=tbl.Name#> table in the <#=DatabaseName#> Database.
  */
 @Entity
+@Table(name="<#=tbl.Name#>")
 public class <#=tbl.TitleName#> extends Model {
 	    
 <#  
     //generate fields
     foreach(var col in tbl.Columns){
-	if (tbl.ClassName == col.CleanName)
-	{
-		col.CleanName += "X";
-        col.TitleName += "X";
-        col.CamelName += "X";
-	}
     if (col.IsPK) 
     {
 #>
@@ -41,7 +37,7 @@ public class <#=tbl.TitleName#> extends Model {
     if (!col.IsNullable && !col.IsPK)
     {
 #>
-    @NotNull
+    @Column(nullable = false)
 <#
     }
     if (col.TitleName == "CreatedAt")
