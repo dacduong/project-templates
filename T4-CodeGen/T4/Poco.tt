@@ -32,7 +32,7 @@ namespace <#=Namespace#>
 			}
 #>
 		public <#=col.SysType#><#=CheckNullable(col)#> <#=col.CleanName#> { get; set; }
-		public const string <#=col.CleanName#>ColumnName = "<#=col.CleanName#>";
+		public const string <#=col.CleanName#>Column = "<#=col.CleanName#>";
 <#      }#>
 
         #endregion

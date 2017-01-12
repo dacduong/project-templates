@@ -58,7 +58,7 @@ public class <#=tbl.TitleName#> extends Model {
     }
 #>
     protected <#=col.SysType#> <#=col.CamelName#>;
-    public static final String <#=col.TitleName#>ColumnName = "<#=col.CleanName#>";
+    public static final String <#=col.TitleName#>Column = "<#=col.CleanName#>";
 
 <#}#>
 
