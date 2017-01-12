@@ -5,7 +5,7 @@
     var tables = LoadTables();
 	 
 	//use lower table name only
-	string[] IncludeTables = new string[] {};
+	string[] IncludeTables = new string[] {"purchase_order"};
 
     foreach(Table tbl in tables) {
 		if (IncludeTables.Length>0 && !IncludeTables.Contains(tbl.Name.ToLower()))
@@ -21,7 +21,7 @@ import javax.persistence.*;
  * A class which represents the <#=tbl.Name#> table in the <#=DatabaseName#> Database.
  */
 @Entity
-public class <#=tbl.ClassName#> extends Model {
+public class <#=tbl.TitleName#> extends Model {
 	    
 <#  
     //generate fields
@@ -78,6 +78,6 @@ public class <#=tbl.ClassName#> extends Model {
 }
 <#
     // Write new POCO class to its own file
-    SaveOutput(tbl.Name + ".java", destinationFolder);
+    SaveOutput(tbl.TitleName + ".java", destinationFolder);
 }
 #>
