@@ -1,0 +1,46 @@
+﻿<#@ template language="C#" debug="False" hostspecific="True"  #>
+<#@ output extension=".java" #>
+<#@ include file="JavaMySQL.ttinclude" #>
+<#
+    var tables = LoadTables();
+	
+	//use lower table name only
+	string[] IncludeTables = new string[] {"txoutlet","txvariant"};
+
+    foreach(Table tbl in tables) {
+		if (IncludeTables.Length>0 && !IncludeTables.Contains(tbl.Name.ToLower()))
+			continue;
+#>
+using System;
+
+namespace <#=Namespace#>
+{  
+    /// <summary>
+    /// A class which represents the <#=tbl.Name#> table in the <#=DatabaseName#> Database.
+    /// This class is queryable through <#=DatabaseName#>DB.<#=tbl.ClassName#> 
+    /// </summary>
+
+	public partial class <#=tbl.ClassName#>
+	{
+	    
+	    #region Properties
+	    
+<#      foreach(var col in tbl.Columns){
+			if (tbl.ClassName == col.CleanName)
+			{
+				col.CleanName += "X";
+			}
+#>
+		public <#=col.SysType#><#=CheckNullable(col)#> <#=col.CleanName#> { get; set; }
+		public const string <#=col.CleanName#>ColumnName = "<#=col.CleanName#>";
+<#      }#>
+
+        #endregion
+
+	}
+}	
+<#
+    // Write new POCO class to its own file
+    SaveOutput(tbl.Name + ".java", destinationFolder);
+}
+#>

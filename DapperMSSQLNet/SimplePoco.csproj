@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{37591500-00EA-4CBE-9312-6FE345ABB6EE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimplePoco</RootNamespace>
+    <AssemblyName>SimplePoco</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TPDotnet.Base.Cryptography">
+      <HintPath>..\..\..\..\TPDotnet\bin\TPDotnet.Base.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="TPDotnet.Base.DatabaseEnvironment">
+      <HintPath>..\..\..\..\TPDotnet\bin\TPDotnet.Base.DatabaseEnvironment.dll</HintPath>
+    </Reference>
+    <Reference Include="TPDotnet.Base.Service">
+      <HintPath>..\..\..\..\TPDotnet\bin\TPDotnet.Base.Service.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Computer.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemCategory.cs" />
+    <Compile Include="Models\Media.cs" />
+    <Compile Include="Models\MediaMember.cs" />
+    <Compile Include="Models\POSDepartment.cs" />
+    <Compile Include="Models\POSIdentity.cs" />
+    <Compile Include="Models\RetailStore.cs" />
+    <Compile Include="Models\TxDiscInfo.cs" />
+    <Compile Include="Models\TxFooter.cs" />
+    <Compile Include="Models\TxMediaLine.cs" />
+    <Compile Include="Models\TxSaleLineItem.cs" />
+    <Compile Include="Models\TxTotal.cs" />
+    <Compile Include="Models\WebServiceConfig.cs" />
+    <Compile Include="PocoT4MSSQL.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PocoT4MSSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dapper\SqlMapper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="PocoT4MSSQL.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PocoT4MSSQL.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
