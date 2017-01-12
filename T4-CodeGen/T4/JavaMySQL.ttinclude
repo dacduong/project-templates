@@ -1,5 +1,4 @@
-﻿<#@ include file="Settings.ttinclude" #>
-<#@ assembly name="MySql.Data" #>
+﻿<#@ assembly name="MySql.Data" #>
 <#@ import namespace="MySql.Data.MySqlClient" #>
 <#+
 MySqlConnection conn;

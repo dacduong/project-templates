@@ -16,6 +16,12 @@
 <#@ import namespace="System.Configuration" #>
 <#+
 
+    //use lowercase table name only
+	string[] includeTables = new string[] {};
+    string[] ignoreColumns = new string[] {};
+    
+    string baseObject = "Model";
+
     const string Namespace = "mypackage.models";
     const string ConnectionStringName = "myConn";
     
@@ -29,8 +35,8 @@
 
     //this is a list of tables you don't want generated
     string[] ExcludeTables = new string[]{
-    "sysdiagrams",
-    "BuildVersion"
+        "sysdiagrams",
+        "BuildVersion"
     };
 
     void SaveOutput(string outputFileName, string destinationFolder)

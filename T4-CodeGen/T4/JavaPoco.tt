@@ -1,13 +1,13 @@
 ﻿<#@ template language="C#" debug="False" hostspecific="True"  #>
 <#@ output extension=".java" #>
+<#@ include file="local_FTSettings.ttinclude" #>
 <#@ include file="JavaMySQL.ttinclude" #>
 <#
-    var tables = LoadTables();
-	
-	//use lowercase table name only
-	string[] includeTables = new string[] {};
-    string[] ignoreColumns = new string[] {};
+    //general Settings.ttinclude
+    //FT: local_FTSettings.ttinclude
+    //Report: local_ReportSettings.ttinclude
 
+    var tables = LoadTables();
     foreach(Table tbl in tables) {
 		if (includeTables.Length>0 && !includeTables.Contains(tbl.Name.ToLower()))
 			continue;
@@ -22,9 +22,8 @@ import javax.persistence.*;
 /**
  * A class which represents the <#=tbl.Name#> table in the <#=DatabaseName#> Database.
  */
-@Entity
-@Table(name="<#=tbl.Name#>")
-public class <#=tbl.TitleName#> extends Model {
+@MappedSuperclass
+public class <#=tbl.TitleName#> extends <#=baseObject#> {
 	    
 <#  
     //generate fields
