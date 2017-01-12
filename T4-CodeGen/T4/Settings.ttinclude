@@ -17,11 +17,11 @@
 <#+
 
     const string Namespace = "mypackage.models";
-    const string ConnectionStringName = "myConn1";
+    const string ConnectionStringName = "myConn";
     
     //This is the name of your database and is used in naming
     //the repository. By default we set it to the connection string name
-    const string DatabaseName = "ftreport";
+    const string DatabaseName = "xxx";
 
     string destinationFolder = "Generated";
 

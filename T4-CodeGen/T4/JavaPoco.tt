@@ -5,7 +5,7 @@
     var tables = LoadTables();
 	 
 	//use lower table name only
-	string[] IncludeTables = new string[] {"purchase_order"};
+	string[] IncludeTables = new string[] {};
 
     foreach(Table tbl in tables) {
 		if (IncludeTables.Length>0 && !IncludeTables.Contains(tbl.Name.ToLower()))

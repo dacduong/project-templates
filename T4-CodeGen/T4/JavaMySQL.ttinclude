@@ -146,7 +146,7 @@ string GetSysType(string sqlType){
 	string sysType="String";
 	switch (sqlType) {
 	    case "bigint unsigned":
-			sysType= "BigInteger";
+			sysType= "java.math.BigInteger";
 			break;
 		case "bigint":
 			sysType= "Long";
@@ -191,7 +191,7 @@ string GetSysType(string sqlType){
 		case "decimal unsigned":
 		case "decimal":
 		case "money":
-			sysType=  "BigDecimal";
+			sysType=  "java.math.BigDecimal";
 			 break;
 	    case "tinyint unsigned":
 	          sysType=  "Integer";
