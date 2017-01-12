@@ -142,39 +142,47 @@ List<Table> LoadTables(){
 }
 
 string GetSysType(string sqlType){
-	string sysType="string";
+	string sysType="String";
 	switch (sqlType) {
 	    case "bigint unsigned":
-			sysType= "ulong";
+			sysType= "BigInteger";
 			break;
 		case "bigint":
-			sysType= "long";
+			sysType= "Long";
 			break;
 	    case "mediumint unsigned":
 	    case "int unsigned":
-			sysType= "uint";
+			sysType= "Long";
 			break;
 	    case "mediumint":
 		case "int":
-			sysType= "int";
+			sysType= "Integer";
 			break;
 	    case "smallint unsigned":
-	        sysType= "ushort";
+	        sysType= "Integer";
 			break;
 		case "smallint":
-			sysType= "short";
+			sysType= "Integer";
 			break;
 		case "guid":
-			sysType=  "Guid";
-			 break;
-		case "smalldatetime":
+			sysType=  "String";
+			 break;		
 		case "date":
+            sysType= "java.sql.Date";
+            break;
+        case "smalldatetime":
 		case "datetime":
 		case "timestamp":
-			sysType=  "DateTime";
-			  break;
+			sysType=  "java.sql.Timestamp";
+			break;
+        case "time":
+            sysType= "java.sql.Time";
+            break;
 		case "float":
-			sysType="double";
+			sysType="Float";
+			break;
+        case "double":
+			sysType="Double";
 			break;
 		case "real":
 		case "numeric":
@@ -182,16 +190,16 @@ string GetSysType(string sqlType){
 		case "decimal unsigned":
 		case "decimal":
 		case "money":
-			sysType=  "decimal";
+			sysType=  "BigDecimal";
 			 break;
 	    case "tinyint unsigned":
-	          sysType=  "byte";
+	          sysType=  "Integer";
 			  break;
 		case "tinyint":
-		        sysType=  "sbyte";
+		        sysType=  "Integer";
 			   break;
 		case "bit":
-			sysType=  "bool";
+			sysType=  "byte[]";
 			   break;
 	    case "longblob":
 		case "image":
