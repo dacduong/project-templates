@@ -4,11 +4,12 @@
 <#
     var tables = LoadTables();
 	
-	//use lower table name only
-	string[] IncludeTables = new string[] {};
+	//use lowercase table name only
+	string[] includeTables = new string[] {};
+    string[] ignoreColumns = new string[] {};
 
     foreach(Table tbl in tables) {
-		if (IncludeTables.Length>0 && !IncludeTables.Contains(tbl.Name.ToLower()))
+		if (includeTables.Length>0 && !includeTables.Contains(tbl.Name.ToLower()))
 			continue;
 #>
 package <#=Namespace#>;
@@ -28,6 +29,9 @@ public class <#=tbl.TitleName#> extends Model {
 <#  
     //generate fields
     foreach(var col in tbl.Columns){
+    //ignore columns
+    if (ignoreColumns.Length>0 && ignoreColumns.Contains(col.Name.ToLower()))
+			continue;
     if (col.IsPK) 
     {
 #>
@@ -61,6 +65,9 @@ public class <#=tbl.TitleName#> extends Model {
 <#  
     //generate getter, setter
     foreach(var col in tbl.Columns){
+    //ignore columns
+    if (ignoreColumns.Length>0 && ignoreColumns.Contains(col.Name.ToLower()))
+			continue;
 #>
     public <#=col.SysType#> get<#=col.TitleName#>() {
         return <#=col.CamelName#>;
