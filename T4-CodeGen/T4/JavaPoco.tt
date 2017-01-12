@@ -16,7 +16,6 @@ package <#=Namespace#>;
 import io.ebean.Model;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * A class which represents the <#=tbl.Name#> table in the <#=DatabaseName#> Database.
