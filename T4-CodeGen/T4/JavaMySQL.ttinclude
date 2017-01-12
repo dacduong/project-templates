@@ -102,6 +102,8 @@ List<Table> LoadTables(){
                 Column col=new Column();
                 col.Name=row["COLUMN_NAME"].ToString();
                 col.CleanName=CleanUp(col.Name);
+                col.TitleName=TitleCase(col.CleanName);
+                col.CamelName=CamelCase(col.CleanName);
                 col.DataType=row["DATA_TYPE"].ToString();
                 
                 /* Pass the information whether Data Type Unsigned or Not **/

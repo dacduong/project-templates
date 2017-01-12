@@ -3,42 +3,80 @@
 <#@ include file="JavaMySQL.ttinclude" #>
 <#
     var tables = LoadTables();
-	  
+	 
 	//use lower table name only
-	string[] IncludeTables = new string[] {"txoutlet","txvariant"};
+	string[] IncludeTables = new string[] {};
 
     foreach(Table tbl in tables) {
 		if (IncludeTables.Length>0 && !IncludeTables.Contains(tbl.Name.ToLower()))
 			continue;
 #>
-using System;
+package <#=Namespace#>;
 
-namespace <#=Namespace#>
-{  
-    /// <summary>
-    /// A class which represents the <#=tbl.Name#> table in the <#=DatabaseName#> Database.
-    /// This class is queryable through <#=DatabaseName#>DB.<#=tbl.ClassName#> 
-    /// </summary>
+import io.ebean.Model;
 
-	public partial class <#=tbl.ClassName#>
+import javax.persistence.*;
+import java.util.Date;
+
+/**
+ * A class which represents the <#=tbl.Name#> table in the <#=DatabaseName#> Database.
+ */
+@Entity
+public class <#=tbl.ClassName#> extends Model {
+	    
+<#  
+    //generate fields
+    foreach(var col in tbl.Columns){
+	if (tbl.ClassName == col.CleanName)
 	{
-	    
-	    #region Properties
-	    
-<#      foreach(var col in tbl.Columns){
-			if (tbl.ClassName == col.CleanName)
-			{
-				col.CleanName += "X";
-			}
-#>
-		public <#=col.SysType#><#=CheckNullable(col)#> <#=col.CleanName#> { get; set; }
-		public const string <#=col.CleanName#>ColumnName = "<#=col.CleanName#>";
-<#      }#>
-
-        #endregion
-
+		col.CleanName += "X";
+        col.TitleName += "X";
+        col.CamelName += "X";
 	}
-}	
+    if (col.IsPK) 
+    {
+#>
+    @Id
+<#
+    }
+    if (!col.IsNullable && !col.IsPK)
+    {
+#>
+    @NotNull
+<#
+    }
+    if (col.TitleName == "CreatedAt")
+    {
+#>
+    @CreatedTimestamp
+<#
+    }
+    if (col.TitleName == "UpdateddAt")
+    {
+#>
+    @UpdatedTimestamp
+<#
+    }
+#>
+    protected <#=col.SysType#> <#=col.CamelName#>;
+    public static final String <#=col.TitleName#>ColumnName = "<#=col.CleanName#>";
+
+<#}#>
+
+<#  
+    //generate getter, setter
+    foreach(var col in tbl.Columns){
+#>
+    public <#=col.SysType#> get<#=col.TitleName#>() {
+        return <#=col.CamelName#>;
+    }
+
+    public void set<#=col.TitleName#>(<#=col.SysType#> <#=col.CamelName#>) {
+        this.<#=col.CamelName#> = <#=col.CamelName#>;
+    }
+
+<#}#>
+}
 <#
     // Write new POCO class to its own file
     SaveOutput(tbl.Name + ".java", destinationFolder);

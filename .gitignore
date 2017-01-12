@@ -4,4 +4,4 @@
 *.suo
 .vs/
 Visual*/
-Generated/*
+Generated*/

@@ -14,10 +14,9 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
 <#@ import namespace="System.Configuration" #>
-
 <#+
 
-    const string Namespace = "MyNamespace";
+    const string Namespace = "mypackage.models";
     const string ConnectionStringName = "myConn";
     
     //This is the name of your database and is used in naming
@@ -45,6 +44,18 @@
  
         // Flush generation
         this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+    }
+
+    string CamelCase(string st){
+        if (st.Length == 1)
+            return st.ToLower();
+        string result = TitleCase(st);
+        return result[0].ToString().ToLower() + result.Substring(1);
+    }
+
+    string TitleCase(string st){
+        string result = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(st.Replace("_", " ")).Replace(" ", "");
+        return result;
     }
 
     string CleanUp(string tableName){
@@ -208,6 +219,8 @@
     public class Column{
         public string Name;
         public string CleanName;
+        public string TitleName;
+        public string CamelName;
         public string SysType;
         public string DataType;
         public DbType DbType;
