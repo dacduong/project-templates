@@ -3,7 +3,7 @@
 <#@ include file="MySQL.ttinclude" #>
 <#
     var tables = LoadTables();
-	
+	 
 	//use lower table name only
 	string[] IncludeTables = new string[] {"txoutlet","txvariant"};
 

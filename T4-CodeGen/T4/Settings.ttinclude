@@ -18,7 +18,7 @@
 <#+
 
     const string Namespace = "MyNamespace";
-    const string ConnectionStringName = "myconn";
+    const string ConnectionStringName = "myConn";
     
     //This is the name of your database and is used in naming
     //the repository. By default we set it to the connection string name
