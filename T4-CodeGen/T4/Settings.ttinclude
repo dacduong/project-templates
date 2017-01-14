@@ -32,6 +32,7 @@
     string destinationFolder = "Generated";
 
     const bool TreatTinyint1AsBool = false;
+    const bool UseSingularRule = false;
 
     //this is a list of tables you don't want generated
     string[] ExcludeTables = new string[]{
@@ -416,6 +417,8 @@
         /// <param name="word">The word.</param>
         /// <returns></returns>
         public static string MakeSingular(string word) {
+            if (!UseSingularRule)
+                return word;
             return ApplyRules(_singulars, word);
         }
 

@@ -1,6 +1,6 @@
 ﻿<#@ template language="C#" debug="False" hostspecific="True"  #>
 <#@ output extension=".java" #>
-<#@ include file="local_FTSettings.ttinclude" #>
+<#@ include file="local_ReportSettings.ttinclude" #>
 <#@ include file="JavaMySQL.ttinclude" #>
 <#
     //general Settings.ttinclude
@@ -23,7 +23,7 @@ import javax.persistence.*;
  * A class which represents the <#=tbl.Name#> table in the <#=DatabaseName#> Database.
  */
 @MappedSuperclass
-public class <#=tbl.TitleName#> extends <#=baseObject#> {
+public class <#=tbl.TitleName#>Gen extends <#=baseObject#> {
 	    
 <#  
     //generate fields
@@ -80,6 +80,6 @@ public class <#=tbl.TitleName#> extends <#=baseObject#> {
 }
 <#
     // Write new POCO class to its own file
-    SaveOutput(tbl.TitleName + ".java", destinationFolder);
+    SaveOutput(tbl.TitleName + "Gen.java", destinationFolder);
 }
 #>
