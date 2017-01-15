@@ -49,7 +49,7 @@ public class <#=tbl.TitleName#>Gen extends <#=GetBaseModel(tbl.Name.ToLower())#>
     @CreatedTimestamp
 <#
     }
-    if (col.TitleName == "UpdateddAt")
+    if (col.TitleName == "UpdatedAt")
     {
 #>
     @UpdatedTimestamp
