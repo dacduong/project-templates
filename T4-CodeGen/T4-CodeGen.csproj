@@ -58,6 +58,8 @@
     <None Include="T4\Classes.tt.bak" />
     <None Include="T4\Context.tt.bak" />
     <None Include="T4\JavaMySQL.ttinclude" />
+    <None Include="T4\local_FTSettings.ttinclude" />
+    <None Include="T4\local_ReportSettings.ttinclude" />
     <None Include="T4\MySQL.ttinclude" />
     <None Include="T4\Settings.ttinclude" />
     <None Include="T4\SQLite.ttinclude" />
@@ -83,14 +85,6 @@
       <LastGenOutput>Poco.java</LastGenOutput>
     </Content>
     <Content Include="T4\Readme.txt" />
-    <Content Include="T4\StoredProcedures.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StoredProcedures1.cs</LastGenOutput>
-    </Content>
-    <Content Include="T4\Structs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Structs1.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

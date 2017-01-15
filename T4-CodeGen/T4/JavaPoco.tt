@@ -23,13 +23,13 @@ import javax.persistence.*;
  * A class which represents the <#=tbl.Name#> table in the <#=DatabaseName#> Database.
  */
 @MappedSuperclass
-public class <#=tbl.TitleName#>Gen extends <#=baseObject#> {
+public class <#=tbl.TitleName#>Gen extends <#=GetBaseModel(tbl.Name.ToLower())#> {
 	    
 <#  
     //generate fields
     foreach(var col in tbl.Columns){
     //ignore columns
-    if (ignoreColumns.Length>0 && ignoreColumns.Contains(col.Name.ToLower()))
+    if (GetIgnoreColumns(tbl.Name.ToLower()).Length>0 && GetIgnoreColumns(tbl.Name.ToLower()).Contains(col.Name.ToLower()))
 			continue;
     if (col.IsPK) 
     {
@@ -65,7 +65,7 @@ public class <#=tbl.TitleName#>Gen extends <#=baseObject#> {
     //generate getter, setter
     foreach(var col in tbl.Columns){
     //ignore columns
-    if (ignoreColumns.Length>0 && ignoreColumns.Contains(col.Name.ToLower()))
+    if (GetIgnoreColumns(tbl.Name.ToLower()).Length>0 && GetIgnoreColumns(tbl.Name.ToLower()).Contains(col.Name.ToLower()))
 			continue;
 #>
     public <#=col.SysType#> get<#=col.TitleName#>() {

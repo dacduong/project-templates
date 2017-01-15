@@ -18,9 +18,6 @@
 
     //use lowercase table name only
 	string[] includeTables = new string[] {};
-    string[] ignoreColumns = new string[] {};
-    
-    string baseObject = "Model";
 
     const string Namespace = "mypackage.models";
     const string ConnectionStringName = "myConn";
@@ -39,6 +36,19 @@
         "sysdiagrams",
         "BuildVersion"
     };
+
+    //implement logic for base model here
+    string GetBaseModel(string tableName)
+    {
+        return "Model";        
+    }
+
+    //implement logic for ignore column here
+    string[] GetIgnoreColumns(string tableName)
+    {
+        string[] ignoreColumns = new string[] {};
+        return ignoreColumns;
+    }
 
     void SaveOutput(string outputFileName, string destinationFolder)
     {
