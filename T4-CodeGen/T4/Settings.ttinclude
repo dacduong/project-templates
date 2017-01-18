@@ -54,7 +54,7 @@
     {
         // Write to destination folder
         //string templateDirectory = Path.Combine(Path.GetDirectoryName(Host.TemplateFile), destinationFolder);
-        string templateDirectory = Path.Combine(Directory.GetCurrentDirectory(), destinationFolder);
+        string templateDirectory = Path.Combine(GetProjectPath(), destinationFolder);
         string outputFilePath = Path.Combine(templateDirectory, outputFileName);
         File.Delete(outputFilePath);
         File.WriteAllText(outputFilePath, this.GenerationEnvironment.ToString()); 
